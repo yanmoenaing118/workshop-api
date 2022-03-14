@@ -31,6 +31,11 @@ app.use("/api/v1/dramas", dramaRouter);
 app.use("/api/v1/songs", songRouter)
 
 
+app.use("*", (req,res) => {
+    res.send("Hi, This is workshop api")
+} )
+
+
 app.listen(process.env.PORT || 3000, () => {
     console.log('server running on port 3000');
 })
