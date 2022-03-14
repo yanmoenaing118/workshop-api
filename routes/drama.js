@@ -2,17 +2,18 @@ const express = require("express");
 
 const router = new express.Router();
 const dramaController = require("./../controllers/drama");
+const authController = require("./../controllers/auth");
 
 router
     .route("/")
     .get(dramaController.getAllDramas)
-    .post(dramaController.createDrama)
+    .post(authController.protect, dramaController.createDrama)
 
 router
     .route("/:id")
     .get(dramaController.getDrama)
-    .patch(dramaController.updateDrama)
-    .delete(dramaController.deleteDrama);
+    .patch(authController.protect, dramaController.updateDrama)
+    .delete(authController.protect, dramaController.deleteDrama);
 
 
 module.exports = router;
